@@ -16,6 +16,7 @@ namespace BFP_FSES
     {
 
         OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\\BFP-FSES\\BFP-FSES.accdb;Persist Security Info=False;");
+        public Loading load = new Loading();
         public String state = "nk";
         public MainForm()
         {
@@ -142,8 +143,11 @@ namespace BFP_FSES
         {
             if (state == "nk")
             {
+                
                 frmLOGIN login = new frmLOGIN();
                 login.ShowDialog();
+                
+
             }
             System.Threading.Thread initproc = new System.Threading.Thread(new System.Threading.ThreadStart(initiate));
             ucLOADING y = new ucLOADING();

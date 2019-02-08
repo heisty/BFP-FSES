@@ -1,4 +1,3 @@
-D:\BFP-FSES\BFP-FSES\obj\x64\Debug\Interop.Microsoft.Office.Core.dll
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP-FSES.csproj.ResolveComReference.cache
 D:\BFP-FSES\BFP-FSES\bin\x64\Debug\BFP-FSES.exe.manifest
 D:\BFP-FSES\BFP-FSES\bin\x64\Debug\BFP-FSES.application
@@ -11,6 +10,7 @@ D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.CROSSCHECKER.resources
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.dataINFO.resources
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.MainForm.resources
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.frmLOGIN.resources
+D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.Loading.resources
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.Properties.Resources.resources
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.ucLISTCHECKER.resources
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP_FSES.ucLOADING.resources
@@ -21,3 +21,4 @@ D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP-FSES.exe.manifest
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP-FSES.application
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP-FSES.exe
 D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP-FSES.pdb
+D:\BFP-FSES\BFP-FSES\obj\x64\Debug\BFP-FSES.csprojResolveAssemblyReference.cache

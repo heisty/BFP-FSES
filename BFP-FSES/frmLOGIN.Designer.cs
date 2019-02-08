@@ -48,7 +48,6 @@
             this.panellogo.Name = "panellogo";
             this.panellogo.Size = new System.Drawing.Size(500, 260);
             this.panellogo.TabIndex = 12;
-           // this.panellogo.Click += new System.EventHandler(this.panellogo_Click);
             // 
             // panel1
             // 
@@ -63,23 +62,23 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Bahnschrift", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(119, 302);
             this.textBox1.Name = "textBox1";
             this.textBox1.PasswordChar = '•';
-            this.textBox1.Size = new System.Drawing.Size(260, 33);
+            this.textBox1.Size = new System.Drawing.Size(260, 31);
             this.textBox1.TabIndex = 13;
-           // this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.login);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(178, 276);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 19);
+            this.label1.Size = new System.Drawing.Size(176, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "SYSTEM SECURITY";
             // 
@@ -95,7 +94,6 @@
             this.Name = "frmLOGIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLOGIN";
-            //this.Load += new System.EventHandler(this.frmLOGIN_Load);
             this.panellogo.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

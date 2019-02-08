@@ -45,7 +45,7 @@ namespace BFP_FSES
 
         public void signin()
         {
-
+        
             con.Open();
             String password = textBox1.Text;
             String query = "SELECT COUNT(password) from user_table where password=@password";
@@ -66,6 +66,8 @@ namespace BFP_FSES
             {
                 MessageBox.Show("Login not successful","Access denied",MessageBoxButtons.OK);
             }
+            
+            
 
             con.Close();
         }
@@ -73,6 +75,13 @@ namespace BFP_FSES
         private void button1_Click(object sender, EventArgs e)
         {
             signin();
-        }  
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

@@ -72,7 +72,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.4">
-      <HintPath>..\..\BFP\bfp program\Bunifu_UI_v1.4.dll</HintPath>
+      <HintPath>C:\Users\GARCIA\Downloads\Compressed\Bunifu_UI_v1.4\Bunifu_UI_v1.4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

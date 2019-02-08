@@ -94,6 +94,7 @@ namespace BFP_FSES
             ucMASTERLIST.Instance.comboBox2.DisplayMember = "record_year";
             ucMASTERLIST.Instance.comboBox2.ValueMember = "ID";
             ucMASTERLIST.Instance.comboBox2.DataSource = ds.Tables[0];
+           
         }
 
         public void lyr(int sentyear)
@@ -109,20 +110,34 @@ namespace BFP_FSES
 
             int year = Convert.ToInt32(DateTime.Now.Year.ToString());
 
-            String query1 = "Select `fsic_number` as `FSIC NUMBER`,`bin` as BIN,`est_name` as  `ESTABLISHMENT NAME`,`est_address` as ADDRESS,`est_owner` as OWNER, `est_status` as STATUS,`fsic_exp_date` as `FSIC EXP DATE`,`date_issued` as `DATE ISSUE`, `status_of_application` as `STATUS OF APPLICATION`, `amount` as `AMOUNT`, `or` as `OR`, `_date` as `DATE`,  `io_number` as `IO`, `date_inspected` as `DATE INSPECTED`,`nature_of_business` as `NATURE OF BUSINESS`, `occupancy_type` as OCCUPANCY, `safety_inspectors` as INSPECTORS, `cons_materials` as `MATERIALS`, `storey_no` as STOREY, `portion_occupied` as `PORTION OCCUPIED`, `floor_area` as `FLOOR AREA`, `noted_violation` as VIOLATION, `inspected` as INSPECTED, `est_type` as TYPE, `paid` as PAID,`version` as VERSION, `_month` as `MONTH` ,`id` as ID  from record where version=year";
-            OleDbCommand y = new OleDbCommand(query1, con);
+            if(comboBox1.Text=="All" || comboBox1.Text=="")
+            {
+                String query1 = "Select `fsic_number` as `FSIC NUMBER`,`bin` as BIN,`est_name` as  `ESTABLISHMENT NAME`,`est_address` as ADDRESS,`est_owner` as OWNER, `est_status` as STATUS,`fsic_exp_date` as `FSIC EXP DATE`,`date_issued` as `DATE ISSUE`, `status_of_application` as `STATUS OF APPLICATION`, `amount` as `AMOUNT`, `or` as `OR`, `_date` as `DATE`,  `io_number` as `IO`, `date_inspected` as `DATE INSPECTED`,`nature_of_business` as `NATURE OF BUSINESS`, `occupancy_type` as OCCUPANCY, `safety_inspectors` as INSPECTORS, `cons_materials` as `MATERIALS`, `storey_no` as STOREY, `portion_occupied` as `PORTION OCCUPIED`, `floor_area` as `FLOOR AREA`, `noted_violation` as VIOLATION, `inspected` as INSPECTED, `est_type` as TYPE, `paid` as PAID,`version` as VERSION, `_month` as `MONTH` ,`id` as ID  from record where version=year";
+                OleDbCommand y = new OleDbCommand(query1, con);
 
-            y.Parameters.AddWithValue("@year", sentyear);
-            OleDbDataAdapter latest = new OleDbDataAdapter(y);
+                y.Parameters.AddWithValue("@year", sentyear);
+                OleDbDataAdapter latest = new OleDbDataAdapter(y);
 
-            DataSet dt = new DataSet();
-            latest.Fill(dt);
+                DataSet dt = new DataSet();
+                latest.Fill(dt);
 
+                ucMASTERLIST.Instance.dataGRID.DataSource = dt.Tables[0];
+            }
+            else
+            {
+                String query1 = "Select `fsic_number` as `FSIC NUMBER`,`bin` as BIN,`est_name` as  `ESTABLISHMENT NAME`,`est_address` as ADDRESS,`est_owner` as OWNER, `est_status` as STATUS,`fsic_exp_date` as `FSIC EXP DATE`,`date_issued` as `DATE ISSUE`, `status_of_application` as `STATUS OF APPLICATION`, `amount` as `AMOUNT`, `or` as `OR`, `_date` as `DATE`,  `io_number` as `IO`, `date_inspected` as `DATE INSPECTED`,`nature_of_business` as `NATURE OF BUSINESS`, `occupancy_type` as OCCUPANCY, `safety_inspectors` as INSPECTORS, `cons_materials` as `MATERIALS`, `storey_no` as STOREY, `portion_occupied` as `PORTION OCCUPIED`, `floor_area` as `FLOOR AREA`, `noted_violation` as VIOLATION, `inspected` as INSPECTED, `est_type` as TYPE, `paid` as PAID,`version` as VERSION, `_month` as `MONTH` ,`id` as ID  from record where version=year and `_month`=@month";
+                OleDbCommand y = new OleDbCommand(query1, con);
 
-            //ucMASTERLIST.Instance.dataGRID.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            //ucMASTERLIST.Instance.dataGRID.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                y.Parameters.AddWithValue("@year", sentyear);
+                y.Parameters.AddWithValue("@month", comboBox1.Text);
+                OleDbDataAdapter latest = new OleDbDataAdapter(y);
 
-            ucMASTERLIST.Instance.dataGRID.DataSource = dt.Tables[0];
+                DataSet dt = new DataSet();
+                latest.Fill(dt);
+
+                ucMASTERLIST.Instance.dataGRID.DataSource = dt.Tables[0];
+
+            }
 
 
            load.Close();
@@ -292,6 +307,9 @@ namespace BFP_FSES
         private void button3_Click(object sender, EventArgs e)
         {
             // creating Excel Application  
+            busy = true;
+
+            threader();
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             // creating new WorkBook within Excel application  
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
@@ -358,6 +376,8 @@ namespace BFP_FSES
             workbook1.Save();
             application.Quit();
 
+            load.Close();
+
             AfterSaved execute = new AfterSaved();
             execute.ShowDialog();
 
@@ -388,14 +408,35 @@ namespace BFP_FSES
         {
             busy = true;
             threader();
-            String query1 = "Select `fsic_number` as `FSIC NUMBER`,`bin` as BIN,`est_name` as  `ESTABLISHMENT NAME`,`est_address` as ADDRESS,`est_owner` as OWNER, `est_status` as STATUS,`fsic_exp_date` as `FSIC EXP DATE`,`date_issued` as `DATE ISSUE`, `status_of_application` as `STATUS OF APPLICATION`, `amount` as `AMOUNT`, `or` as `OR`, `_date` as `DATE`,  `io_number` as `IO`, `date_inspected` as `DATE INSPECTED`,`nature_of_business` as `NATURE OF BUSINESS`, `occupancy_type` as OCCUPANCY, `safety_inspectors` as INSPECTORS, `cons_materials` as `MATERIALS`, `storey_no` as STOREY, `portion_occupied` as `PORTION OCCUPIED`, `floor_area` as `FLOOR AREA`, `noted_violation` as VIOLATION, `inspected` as INSPECTED, `est_type` as TYPE, `paid` as PAID,`version` as VERSION, `_month` as `MONTH` ,`id` as ID  from record where `version`=@year and `_month`=@month";
+
+            if (comboBox1.Text == "All")
+             {
+
+            String query1 = "Select `fsic_number` as `FSIC NUMBER`,`bin` as BIN,`est_name` as  `ESTABLISHMENT NAME`,`est_address` as ADDRESS,`est_owner` as OWNER, `est_status` as STATUS,`fsic_exp_date` as `FSIC EXP DATE`,`date_issued` as `DATE ISSUE`, `status_of_application` as `STATUS OF APPLICATION`, `amount` as `AMOUNT`, `or` as `OR`, `_date` as `DATE`,  `io_number` as `IO`, `date_inspected` as `DATE INSPECTED`,`nature_of_business` as `NATURE OF BUSINESS`, `occupancy_type` as OCCUPANCY, `safety_inspectors` as INSPECTORS, `cons_materials` as `MATERIALS`, `storey_no` as STOREY, `portion_occupied` as `PORTION OCCUPIED`, `floor_area` as `FLOOR AREA`, `noted_violation` as VIOLATION, `inspected` as INSPECTED, `est_type` as TYPE, `paid` as PAID,`version` as VERSION, `_month` as `MONTH` ,`id` as ID  from record where `version`=@year";
             OleDbCommand n = new OleDbCommand(query1,con);
             n.Parameters.AddWithValue("@year",comboBox2.Text);
-            n.Parameters.AddWithValue("@month", comboBox1.Text);
+          
             OleDbDataAdapter m = new OleDbDataAdapter(n);
             DataTable l = new DataTable();
             m.Fill(l);
             ucMASTERLIST.Instance.dataGRID.DataSource = l;
+
+             }
+
+             else
+             {
+
+                 String query1 = "Select `fsic_number` as `FSIC NUMBER`,`bin` as BIN,`est_name` as  `ESTABLISHMENT NAME`,`est_address` as ADDRESS,`est_owner` as OWNER, `est_status` as STATUS,`fsic_exp_date` as `FSIC EXP DATE`,`date_issued` as `DATE ISSUE`, `status_of_application` as `STATUS OF APPLICATION`, `amount` as `AMOUNT`, `or` as `OR`, `_date` as `DATE`,  `io_number` as `IO`, `date_inspected` as `DATE INSPECTED`,`nature_of_business` as `NATURE OF BUSINESS`, `occupancy_type` as OCCUPANCY, `safety_inspectors` as INSPECTORS, `cons_materials` as `MATERIALS`, `storey_no` as STOREY, `portion_occupied` as `PORTION OCCUPIED`, `floor_area` as `FLOOR AREA`, `noted_violation` as VIOLATION, `inspected` as INSPECTED, `est_type` as TYPE, `paid` as PAID,`version` as VERSION, `_month` as `MONTH` ,`id` as ID  from record where `version`=@year and `_month`=@month";
+                 OleDbCommand n = new OleDbCommand(query1, con);
+                 n.Parameters.AddWithValue("@year", comboBox2.Text);
+                 n.Parameters.AddWithValue("@month", comboBox1.Text);
+                 OleDbDataAdapter m = new OleDbDataAdapter(n);
+                 DataTable l = new DataTable();
+                 m.Fill(l);
+                 ucMASTERLIST.Instance.dataGRID.DataSource = l;
+
+             }
+            
             load.Close();
        
         }
